@@ -58,7 +58,7 @@ func main() {
 			Subcommands: []cli.Command{
 				{
 					Name:   "create",
-					Usage:  "Create s read-only, non-promotable slave pool.",
+					Usage:  "Create a read-only, non-promotable slave pool.",
 					Action: createSlavePool,
 					Flags: []cli.Flag{
 						cli.StringFlag{
@@ -100,11 +100,14 @@ func createSlavePool(c *cli.Context) {
 	}
 	log.Printf("Got master : %+v\n", master)
 	getPrimarySlavePool(c)
-	// change to check policy and call appripriate function
-	//enslaveSingleSlave(c)
-	//enslaveOneForOne(c)
-	enslaveRing(c)
-
+	switch c.String("syncpolicy") {
+	case "direct":
+		enslaveOneForOne(c)
+	case "ring":
+		enslaveRing(c)
+	case "single":
+		enslaveSingleSlave(c)
+	}
 }
 
 func getPrimarySlavePool(c *cli.Context) {
@@ -120,7 +123,7 @@ func getPrimarySlavePool(c *cli.Context) {
 }
 
 func enslaveSingleSlave(c *cli.Context) {
-	//TODO: make it random
+	//TODO: make it random?
 	target := primarypool[0]
 	for _, saddr := range slaves {
 		slc, err := client.DialAddress(saddr)
