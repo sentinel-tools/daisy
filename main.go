@@ -128,12 +128,12 @@ func enslaveSingleSlave(c *cli.Context) {
 	for _, saddr := range slaves {
 		slc, err := client.DialAddress(saddr)
 		if err != nil {
-			log.Print("SLAVEPOOL ERROR [%s] %+v\n", saddr, err)
+			log.Printf("SLAVEPOOL ERROR [%s] %+v\n", saddr, err)
 			break
 		}
 		err = slc.SlaveOf(target.Host, fmt.Sprintf("%d", target.Port))
 		if err != nil {
-			log.Print("SLAVEOF ERROR [%s] %+v\n", saddr, err)
+			log.Printf("SLAVEOF ERROR [%s] %+v\n", saddr, err)
 		}
 		log.Printf("Enslaved %s to %s:%d\n", saddr, target.Host, target.Port)
 	}
@@ -144,12 +144,12 @@ func enslaveOneForOne(c *cli.Context) {
 		target := primarypool[x]
 		slc, err := client.DialAddress(saddr)
 		if err != nil {
-			log.Print("SLAVEPOOL ERROR [%s] %+v\n", saddr, err)
+			log.Printf("SLAVEPOOL ERROR [%s] %+v\n", saddr, err)
 			break
 		}
 		err = slc.SlaveOf(target.Host, fmt.Sprintf("%d", target.Port))
 		if err != nil {
-			log.Print("SLAVEOF ERROR [%s] %+v:%d\n", saddr, err)
+			log.Printf("SLAVEOF ERROR [%s] %+v:\n", saddr, err)
 		}
 		log.Printf("Enslaved %s to %s:%d\n", saddr, target.Host, target.Port)
 	}
@@ -163,12 +163,12 @@ func enslaveRing(c *cli.Context) {
 		target = primarypool[index]
 		slc, err := client.DialAddress(saddr)
 		if err != nil {
-			log.Print("SLAVEPOOL ERROR [%s] %+v\n", saddr, err)
+			log.Printf("SLAVEPOOL ERROR [%s] %+v\n", saddr, err)
 			break
 		}
 		err = slc.SlaveOf(target.Host, fmt.Sprintf("%d", target.Port))
 		if err != nil {
-			log.Print("SLAVEOF ERROR [%s] %+v:%d\n", saddr, err)
+			log.Printf("SLAVEOF ERROR [%s] %+v:\n", saddr, err)
 		}
 		log.Printf("Enslaved %s to %s:%d\n", saddr, target.Host, target.Port)
 		added += 1
