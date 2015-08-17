@@ -1,4 +1,6 @@
-# Overview Daisy is a CLI tool for managing Redis daisy-chained slave pools.
+# Overview 
+
+Daisy is a CLI tool for managing Redis daisy-chained slave pools.
 
 Imagine you have a basic Redis pod of a master and a pair of slaves. Now
 imagine you want to add an additional pool of slaves which are slaved to some
