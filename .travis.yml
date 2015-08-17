@@ -7,5 +7,5 @@ before_install:
   - go get github.com/tcnksm/ghr
 
 after_success:
-  - go build 
+  - go build -ldflags "-X main.Version $(cat .version)"
   - ghr  --username sentinel-tools --token $GITHUB_TOKEN --replace $(cat .version) daisy

@@ -17,6 +17,7 @@ var (
 	masterconn   *client.Redis
 	sentinelconn *client.Redis
 	primarypool  []structures.SlaveInfo
+	Version      string
 )
 
 func getSentinelConnection(c *cli.Context) (err error) {
@@ -34,7 +35,7 @@ func main() {
 	app = cli.NewApp()
 	app.Name = "daisy"
 	app.Usage = "Create and alter a slavepool in a chained replication configuration"
-	app.Version = "0.1"
+	app.Version = Version
 	app.EnableBashCompletion = true
 	author := cli.Author{Name: "Bill Anderson", Email: "therealbill@me.com"}
 	app.Authors = append(app.Authors, author)
