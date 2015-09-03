@@ -4,8 +4,8 @@ Daisy is a CLI tool for managing Redis daisy-chained slave pools.
 
 Imagine you have a basic Redis pod of a master and a pair of slaves. Now
 imagine you want to add an additional pool of slaves which are slaved to some
-combinaton of th emain pod members, and you don't want these additional slaves
-to be eleigible for failover promotion. In other words you want a pool of
+combinaton of the main pod members, and you don't want these additional slaves
+to be eligible for failover promotion. In other words you want a pool of
 read-only slaves.
 
 You could manage it the manual way, or you could let Daisy configure it the way
@@ -13,7 +13,7 @@ you want it.
 
 # Pool Policies
 
-There are multiple criteria you culd use in determining what pool nodes slave
+There are multiple criteria you could use in determining what pool nodes slave
 to which primary pool. Daisy refers to these as policies.  In Daisy we call the
 slaves in the pod the "primary pool" and the secondary (chained) slaves the
 "slave pool".  By default Daisy will query Sentinel for the slaves of the given
