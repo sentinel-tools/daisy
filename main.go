@@ -17,6 +17,7 @@ var (
 	masterconn   *client.Redis
 	sentinelconn *client.Redis
 	primarypool  []structures.SlaveInfo
+// Version represents the released version of the software 
 	Version      string
 )
 
@@ -172,6 +173,6 @@ func enslaveRing(c *cli.Context) {
 			log.Printf("SLAVEOF ERROR [%s] %+v:\n", saddr, err)
 		}
 		log.Printf("Enslaved %s to %s:%d\n", saddr, target.Host, target.Port)
-		added += 1
+		added++
 	}
 }
